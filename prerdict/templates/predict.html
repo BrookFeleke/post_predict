@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post Price Predictor with Reputation and MPXR</title>
+    <style>
+      /* Center content */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffecec; /* Light red background */
+        color: #661a1a; /* Dark red text */
+      }
+
+      /* Form container */
+      form {
+        background-color: #ffffff; /* White form background for contrast */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+
+      /* Form elements */
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input[type="number"] {
+        width: calc(100% - 16px);
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ff9999; /* Light red border */
+        border-radius: 4px;
+      }
+
+      input[type="submit"] {
+        background-color: #e60000; /* Red button background */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #cc0000; /* Darker red on hover */
+      }
+
+      /* Headings */
+      h1, h2 {
+        margin: 16px 0;
+        text-align: center;
+      }
+
+      /* Margin adjustments */
+      h1 {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Post Prediction</h1>
+    <form method="post">
+      {% csrf_token %}
+      <label>Reputation:</label>
+      <input type="number" name="reputation" required /><br />
+
+      <label>Mpxr:</label>
+      <input type="number" name="mpxr" required /><br />
+
+      <input type="submit" value="Predict Price" />
+    </form>
+
+    {% if prediction %}
+    <h2>Prediction Value: {{ prediction }}</h2>
+    {% endif %}
+  </body>
+</html>
